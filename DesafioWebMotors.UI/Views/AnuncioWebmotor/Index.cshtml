@@ -1,0 +1,54 @@
+@model List<AnuncioWebMotorViewModel>
+
+@{
+    ViewData["Title"] = "Anúncios WebMotor";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Anúncios</h1>
+</div>
+
+<input type="button" value="Cadastro" class="btn btn-primary" onclick="
+    location.href='@Url.Action("Create", "AnuncioWebmotor")'">
+
+<table class=" table">
+    <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Marca</th>
+            <th scope="col">Modelo</th>
+            <th scope="col">Versao</th>
+            <th scope="col">Ano</th>
+            <th scope="col">Quilometragem</th>
+            <th scope="col">Observação</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            foreach (var item in Model)
+            {
+                <tr>
+                    <th scope="row">@item.Id</th>
+                    <td>@item.Marca</td>
+                    <td>@item.Modelo</td>
+                    <td>@item.Versao</td>
+                    <td>@item.Ano</td>
+                    <td>@item.Quilometragem</td>
+                    <td>@item.Observacao</td>
+                    <td>
+                        <input type="button" value="Editar" class="btn btn-primary"
+                        onclick="
+                                                location.href='@Url.Action("Edit", "AnuncioWebmotor", new { id = item.Id })'">
+                    </td>
+                    <td>
+                        <input type="button" value="Deletar" class="btn btn-danger"
+                        onclick="
+                                                location.href='@Url.Action("Delete", "AnuncioWebmotor", new { id = item.Id })'">
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

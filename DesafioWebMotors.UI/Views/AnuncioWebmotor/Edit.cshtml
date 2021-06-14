@@ -1,0 +1,42 @@
+@model AnuncioWebMotorViewModel
+
+@{
+    ViewData["Title"] = "Anúncios WebMotor - Edição";
+}
+
+<h3>Edição de Anúncio</h3>
+<form asp-action="Edit" method="post">
+    <div class="form-group">
+        <label asp-for="Marca"></label>
+        <select id="marca" class="form-select" asp-for="Marca"
+            asp-items='@(new SelectList(ViewBag.makes, "Name", "Name"))' onchange="obterModelos()"></select>
+    </div>
+    <div class="form-group">
+        <label asp-for="Modelo"></label>
+        <select id="modelo" class="form-select" asp-for="Modelo"
+            asp-items='@(new SelectList(ViewBag.models, "Name", "Name"))' onchange="obterVersions()"></select>
+    </div>
+    <div class="form-group">
+        <label asp-for="Versao"></label>
+        <select id="version" class="form-select" asp-for="Versao"
+            asp-items='@(new SelectList(ViewBag.versions, "Name", "Name"))'></select>
+    </div>
+    <div class="form-group">
+        <label asp-for="Ano"></label>
+        <input asp-for="Ano" class="form-control" placeholder="Informe a marca">
+    </div>
+    <div class="form-group">
+        <label asp-for="Quilometragem"></label>
+        <input asp-for="Quilometragem" class="form-control" placeholder="Informe a quilometragem">
+    </div>
+    <div class="form-group">
+        <label asp-for="Observacao"></label>
+        <input asp-for="Observacao" class="form-control" placeholder="Informe a observação">
+    </div>
+    <input type="submit" value="Salvar" class="btn btn-primary">
+</form>
+
+
+@section scripts {
+<script src='@Url.Content("~/js/makesModelsVersions.js")'></script>
+}
